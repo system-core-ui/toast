@@ -2,6 +2,7 @@ import type { CSSObject } from '@emotion/react';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import type { ToastPlacement, ToastVariant } from '../models';
+import { getColorPalette } from './helpers';
 
 export interface ToastContainerOwnerState {
   ownerPlacement: ToastPlacement;
@@ -39,24 +40,11 @@ export const ToastContainerStyled = styled.div<ToastContainerOwnerState>(
 export const ToastRootStyled = styled.div<ToastOwnerState>(
   ({ ownerVariant }): CSSObject => {
     const theme = useTheme() as any;
-    const { palette, shape, typography } = theme || {};
+    const { shape, typography } = theme || {};
 
-    let bgColor = palette?.text?.primary || '#323232'; // default dark
-    let color = palette?.background?.paper || '#fff';
-    
-    if (ownerVariant === 'success') {
-      bgColor = palette?.success?.main || '#2e7d32';
-      color = palette?.success?.contrastText || '#fff';
-    } else if (ownerVariant === 'error') {
-      bgColor = palette?.error?.main || '#d32f2f';
-      color = palette?.error?.contrastText || '#fff';
-    } else if (ownerVariant === 'warning') {
-      bgColor = palette?.warning?.main || '#ed6c02';
-      color = palette?.warning?.contrastText || '#fff';
-    } else if (ownerVariant === 'info') {
-      bgColor = palette?.info?.main || '#0288d1';
-      color = palette?.info?.contrastText || '#fff';
-    }
+    const colorPalette = getColorPalette(theme, ownerVariant);
+    const bgColor = colorPalette.main;
+    const color = colorPalette.contrastText;
 
     return {
       minWidth: 288,

@@ -49,7 +49,16 @@
   "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"],
   "references": [
     {
-      "path": "../../libs/theme/tsconfig.lib.json"
+      "path": "../layout/tsconfig.lib.json"
+    },
+    {
+      "path": "../button/tsconfig.lib.json"
+    },
+    {
+      "path": "../typography/tsconfig.lib.json"
+    },
+    {
+      "path": "../theme/tsconfig.lib.json"
     }
   ]
 }
