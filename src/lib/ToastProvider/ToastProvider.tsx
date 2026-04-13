@@ -19,6 +19,11 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({
   duration: defaultDuration = 4000 
 }) => {
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
+  const [mounted, setMounted] = useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const removeToast = useCallback((id: string) => {
     setToasts((prev) => prev.filter((t) => t.id !== id));
@@ -52,7 +57,7 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({
   return (
     <ToastContext.Provider value={contextValue}>
       {children}
-      {typeof window !== 'undefined' && createPortal(
+      {mounted && typeof document !== 'undefined' && createPortal(
         <ToastContainerStyled ownerPlacement={placement}>
           {toasts.map((toast) => (
             <ToastRootStyled key={toast.id} role="alert" ownerVariant={toast.variant || 'info'}>

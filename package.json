@@ -30,11 +30,11 @@
     "!**/*.stories.*"
   ],
   "peerDependencies": {
-    "react": ">=18",
-    "react-dom": ">=18",
     "@emotion/react": ">=11",
     "@emotion/styled": ">=11",
-    "@thanh-libs/theme": "*"
+    "@thanh-libs/theme": "*",
+    "react": ">=18",
+    "react-dom": ">=18"
   },
   "devDependencies": {
     "@emotion/react": "^11.14.0",
@@ -56,6 +56,10 @@
       "prerelease": "node check-deps.mjs && npx vitest run --passWithNoTests",
       "postbump": "npx vite build"
     }
+  },
+  "dependencies": {
+    "@thanh-libs/button": "^0.0.4",
+    "@thanh-libs/layout": "^0.0.3",
+    "@thanh-libs/typography": "^0.0.3"
   }
 }
-
